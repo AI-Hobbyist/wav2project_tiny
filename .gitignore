@@ -23,6 +23,7 @@ build/
 logs/
 presets/
 presets_backup/
+packed/
 
 !pretrain/*.json
 !.gitkeep

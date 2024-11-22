@@ -58,7 +58,7 @@ optimizer_args:
   optimizer_cls: torch.optim.AdamW
   weight_decay: 0
 pe: rmvpe
-pe_ckpt: pretrained/rmvpe/model.pt
+pe_ckpt: models/rmvpe/rmvpe.pt
 permanent_ckpt_interval: 40000
 permanent_ckpt_start: 200000
 pl_trainer_accelerator: auto

@@ -1,6 +1,5 @@
 import gradio as gr
 import subprocess
-import argparse
 from wav2ustx import wav2ustx, random_filename
 from shutil import rmtree
 from pathlib import Path
@@ -31,8 +30,6 @@ def convert_audio(audio, tempo, enabled_steps):
     wav2ustx(audio, tempo, steps, result)
     pack_files(result)
     return f"packed/{file_name}.zip"
-    
-    
 
 
 def webui(share, server_name, server_port):
@@ -55,9 +52,13 @@ def webui(share, server_name, server_port):
     
     webui.queue(default_concurrency_limit=1)
     webui.launch(inbrowser=True, share=share, server_name=server_name, server_port=server_port)
-    
-    
+
+
 if __name__ == '__main__':
+    import argparse
+    import warnings
+    warnings.filterwarnings("ignore")
+
     args = argparse.ArgumentParser(description='wav2ustx')
     args.add_argument('--share', type=bool, default=False, help='是否分享')
     args.add_argument('--server_name', type=str, default='127.0.0.1', help='绑定地址')
