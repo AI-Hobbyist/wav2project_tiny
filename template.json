@@ -1,0 +1,170 @@
+{
+    "version": 153,
+    "time": {
+        "meter": [
+            {
+                "index": 0,
+                "numerator": 4,
+                "denominator": 4
+            }
+        ],
+        "tempo": [
+            {
+                "position": 0,
+                "bpm": 120
+            }
+        ]
+    },
+    "library": [],
+    "tracks": [
+        {
+            "name": "未命名音轨",
+            "dispColor": "ff7db235",
+            "dispOrder": 0,
+            "renderEnabled": false,
+            "mixer": {
+                "gainDecibel": 0,
+                "pan": 0,
+                "mute": false,
+                "solo": false,
+                "display": true
+            },
+            "mainGroup": {
+                "name": "main",
+                "uuid": "a6cbc361-ef84-4518-8da4-4ac7640aae8c",
+                "parameters": {
+                    "pitchDelta": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "vibratoEnv": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "loudness": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "tension": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "breathiness": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "voicing": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "gender": {
+                        "mode": "cubic",
+                        "points": []
+                    },
+                    "toneShift": {
+                        "mode": "cubic",
+                        "points": []
+                    }
+                },
+                "vocalModes": {},
+                "notes": [
+                    {
+                        "musicalType": "singing",
+                        "onset": 0,
+                        "duration": 705600000,
+                        "lyrics": "la",
+                        "phonemes": "",
+                        "accent": "",
+                        "pitch": 60,
+                        "detune": 0,
+                        "instantMode": false,
+                        "attributes": {
+                            "evenSyllableDuration": true
+                        },
+                        "systemAttributes": {
+                            "evenSyllableDuration": true
+                        },
+                        "pitchTakes": {
+                            "activeTakeId": 0,
+                            "takes": [
+                                {
+                                    "id": 0,
+                                    "expr": 0,
+                                    "liked": false
+                                }
+                            ]
+                        },
+                        "timbreTakes": {
+                            "activeTakeId": 0,
+                            "takes": [
+                                {
+                                    "id": 0,
+                                    "expr": 0,
+                                    "liked": false
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "mainRef": {
+                "groupID": "a6cbc361-ef84-4518-8da4-4ac7640aae8c",
+                "blickAbsoluteBegin": 0,
+                "blickAbsoluteEnd": -1,
+                "blickOffset": 0,
+                "pitchOffset": 0,
+                "isInstrumental": false,
+                "systemPitchDelta": {
+                    "mode": "cubic",
+                    "points": []
+                },
+                "database": {
+                    "name": "",
+                    "language": "",
+                    "phoneset": "",
+                    "languageOverride": "",
+                    "phonesetOverride": "",
+                    "backendType": "",
+                    "version": "-2"
+                },
+                "dictionary": "",
+                "voice": {
+                    "vocalModeInherited": true,
+                    "vocalModePreset": "",
+                    "vocalModeParams": {}
+                },
+                "pitchTakes": {
+                    "activeTakeId": 0,
+                    "takes": [
+                        {
+                            "id": 0,
+                            "expr": 0,
+                            "liked": false
+                        }
+                    ]
+                },
+                "timbreTakes": {
+                    "activeTakeId": 0,
+                    "takes": [
+                        {
+                            "id": 0,
+                            "expr": 0,
+                            "liked": false
+                        }
+                    ]
+                }
+            },
+            "groups": []
+        }
+    ],
+    "renderConfig": {
+        "destination": "",
+        "filename": "未命名",
+        "numChannels": 1,
+        "aspirationFormat": "noAspiration",
+        "bitDepth": 16,
+        "sampleRate": 44100,
+        "exportMixDown": true,
+        "exportPitch": false
+    }
+}
