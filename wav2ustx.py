@@ -4,7 +4,6 @@ import json
 import inference
 import importlib
 import argparse
-import warnings
 import logging
 import subprocess
 from time import time
@@ -28,7 +27,6 @@ def random_filename():
 #分离人声伴奏
 def vocal_separation_step1(input, output):
     logger = get_logger(console_level=logging.INFO)
-    warnings.filterwarnings("ignore", category=UserWarning)
     start_time = time()
     separator = MSSeparator(
         model_type='bs_roformer',
@@ -49,7 +47,6 @@ def vocal_separation_step1(input, output):
 #去除和声
 def vocal_separation_step2(input, output):
     logger = get_logger(console_level=logging.INFO)
-    warnings.filterwarnings("ignore", category=UserWarning)
     start_time = time()
     separator = MSSeparator(
         model_type='mel_band_roformer',
@@ -70,7 +67,6 @@ def vocal_separation_step2(input, output):
 #去除混响
 def vocal_separation_step3(input, output):
     logger = get_logger(console_level=logging.INFO)
-    warnings.filterwarnings("ignore", category=UserWarning)
     start_time = time()
     separator = MSSeparator(
         model_type='bs_roformer',
@@ -91,7 +87,6 @@ def vocal_separation_step3(input, output):
 #去除噪声
 def vocal_separation_step4(input, output):
     logger = get_logger(console_level=logging.INFO)
-    warnings.filterwarnings("ignore", category=UserWarning)
     start_time = time()
     separator = MSSeparator(
         model_type='mel_band_roformer',
