@@ -1,5 +1,5 @@
 ## 歌声转工程
-基于 MSST 和 Wav2Svp 修改，可一键分离伴奏及人声，并根据人声生成工程，工程支持 **Synth V (svp)** 和 **OpenUtau (ustx)**，该版本为精简版，只保留了所需部分代码。
+基于 MSST 和 Wav2Svp 修改，可一键分离伴奏及人声，并根据人声生成工程，工程支持 svp、ustx、ust、vsqx、acep，该版本为精简版，只保留了所需部分代码。
 
 
 ## 使用方法
@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 3. 命令行推理
 ```shell
-python wav2project.py 歌声路径 输出路径 -t 曲速 -s 启用步骤
+python wav2project.py 歌声路径 输出路径 -t 曲速 -s 启用步骤 -f 格式(可选的其他工程格式：ust, ustx, vsqx, acep)
 ```
 
 4. webui推理
