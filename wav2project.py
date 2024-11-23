@@ -5,7 +5,6 @@ import inference
 import importlib
 import argparse
 import logging
-import subprocess
 from time import time
 from inference.msst_infer import MSSeparator
 from utils.logger import get_logger
@@ -169,7 +168,7 @@ def wav2svp(audio_path, tempo, output):
     
     
 #==============主函数==============
-def wav2project(audio, tempo, enabled_steps, output, format):
+def wav2project(audio, tempo, enabled_steps, output, proj):
     #初始化
     try:
         rmtree('results')
@@ -221,7 +220,7 @@ def wav2project(audio, tempo, enabled_steps, output, format):
     
     move(src, f'{output}/{base_name}.wav')
     svp_path = wav2svp(f'{output}/{base_name}.wav', tempo, output)
-    svp2other(svp_path, format)
+    svp2other(svp_path, proj)
     rmtree('results')
     
 #==============命令行==============

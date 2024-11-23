@@ -24,6 +24,7 @@ logs/
 presets/
 presets_backup/
 packed/
+models/
 
 !pretrain/*.json
 !.gitkeep
