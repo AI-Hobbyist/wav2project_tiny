@@ -9,6 +9,7 @@ import subprocess
 from time import time
 from inference.msst_infer import MSSeparator
 from utils.logger import get_logger
+from utils.proj_conv import svp2other
 from modules.rmvpe.inference import RMVPE
 from utils.slicer2 import Slicer
 from build_svp import build_svp
@@ -165,24 +166,10 @@ def wav2svp(audio_path, tempo, output):
     svp_path = build_svp(template, midis, f0, tempo, basename, output)
 
     return svp_path
-
-#==============工程转换==============
-#svp转ustx
-def svp2ustx(svp_path):
-    ustx_path = svp_path.replace('.svp', '.ustx')
-    command = f'libresvip-cli proj convert "{svp_path}" "{ustx_path}"'
-    process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    input_values = ['n\n', 'n\n', 'y\n', 'n\n', 'n\n', 'n\n', 'n\n', 'plain\n', 'convert\n', 'split\n', 'n\n', 'n\n', 'n\n', 'n\n', 'n\n','non-arpa\n']
-    for value in input_values:
-        process.stdin.write(value)
-        process.stdin.flush()
-        
-    process.communicate()
-    
     
     
 #==============主函数==============
-def wav2ustx(audio, tempo, enabled_steps, output):
+def wav2project(audio, tempo, enabled_steps, output, format):
     #初始化
     try:
         rmtree('results')
@@ -234,7 +221,7 @@ def wav2ustx(audio, tempo, enabled_steps, output):
     
     move(src, f'{output}/{base_name}.wav')
     svp_path = wav2svp(f'{output}/{base_name}.wav', tempo, output)
-    svp2ustx(svp_path)
+    svp2other(svp_path, format)
     rmtree('results')
     
 #==============命令行==============
@@ -244,5 +231,6 @@ if __name__ == '__main__':
     parser.add_argument('output', type=str, help='输出文件夹')
     parser.add_argument('-t','--tempo', type=int, help='曲速', default=120)
     parser.add_argument('-s','--enabled_steps', type=str, help='启用的步骤，用逗号分隔，可选值：vocal_separation, harmony_removal, deverb, denoise')
+    parser.add_argument('-f','--format', type=str, help='输出格式，目前支持ustx/ust/vsqx/acep', default='ustx', choices=['ustx', 'ust', 'vsqx', 'acep'])
     args = parser.parse_args()
-    wav2ustx(args.audio, args.tempo, args.enabled_steps.split(','), args.output)
+    wav2project(args.audio, args.tempo, args.enabled_steps.split(','), args.output, args.format)
