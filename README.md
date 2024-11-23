@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 3. 命令行推理
 ```shell
-python wav2ustx.py 歌声路径 输出路径 -t 曲速 -s 启用步骤
+python wav2project.py 歌声路径 输出路径 -t 曲速 -s 启用步骤
 ```
 
 4. webui推理
