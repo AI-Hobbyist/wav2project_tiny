@@ -177,7 +177,7 @@ def wav2project(audio, tempo, enabled_steps, output, proj):
     Path('results').mkdir(parents=True, exist_ok=True)
     Path(output).mkdir(parents=True, exist_ok=True)
     
-    base_name = str(Path(audio).name).replace('.wav', '')
+    base_name = Path(audio).name.split('.')[0]
     src = audio
     
     
