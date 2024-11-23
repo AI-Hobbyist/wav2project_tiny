@@ -14,7 +14,7 @@ def svp2other(svp, format):
         
     new_path = svp.replace('.svp', f'.{format}')
     command = f'libresvip-cli proj convert "{svp}" "{new_path}"'
-    process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
     for value in input_values:
         process.stdin.write(value)
         process.stdin.flush()
