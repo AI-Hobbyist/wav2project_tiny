@@ -29,13 +29,13 @@ python webui.py
 **注意事项：**
 1. 请将所需权重下载到 models/msst 目录下 
 
-**人声分离：** BS-Roformer_LargeV1 （[点击下载](https://hf-mirror.com/jarredou/unwa_bs_roformer/resolve/main/BS-Roformer_LargeV1.ckpt?download=true)）
+**人声分离：** BS-Roformer_LargeV1 （[点击下载](https://huggingface.co/jarredou/unwa_bs_roformer/resolve/main/BS-Roformer_LargeV1.ckpt)）
 
-**去除和声：** model_mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956（[点击下载](https://hf-mirror.com/Sucial/Music_Source_Sepetration_Models/resolve/main/model_mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt)）
+**去除和声：** model_mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956（[点击下载](https://huggingface.co/Sucial/Music_Source_Sepetration_Models/resolve/main/model_mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt)）
 
-**去除混响：** dereverb_echo_mbr_v2_sdr_dry_13.4843（[点击下载](https://hf-mirror.com/Sucial/Dereverb-Echo_Mel_Band_Roformer/resolve/main/dereverb_echo_mbr_v2_sdr_dry_13.4843.ckpt)）
+**去除混响：** dereverb_echo_mbr_v2_sdr_dry_13.4843（[点击下载](https://huggingface.co/Sucial/Dereverb-Echo_Mel_Band_Roformer/resolve/main/dereverb_echo_mbr_v2_sdr_dry_13.4843.ckpt)）
 
-**去除噪声：** denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768（[点击下载](https://hf-mirror.com/KitsuneX07/Music_Source_Sepetration_Models/resolve/main/vocal_models/denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt)）
+**去除噪声：** denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768（[点击下载](https://huggingface.co/KitsuneX07/Music_Source_Sepetration_Models/resolve/main/vocal_models/denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt)）
 
 ### Wav2Svp用到的模型
 **注意事项**
