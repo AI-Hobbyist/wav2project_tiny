@@ -30,28 +30,8 @@ def vocal_separation_step1(input, output):
     start_time = time()
     separator = MSSeparator(
         model_type='bs_roformer',
-        config_path=f'configs/model_bs_roformer_ep_368_sdr_12.9628.yaml',
-        model_path=f'models/msst/model_bs_roformer_ep_368_sdr_12.9628.ckpt',
-        device='auto',
-        device_ids=[0],
-        output_format='wav',
-        use_tta=False,
-        store_dirs=output,
-        logger=logger,
-        debug=False
-    )
-    success_files = separator.process_audio(input)
-    separator.del_cache()
-    logger.info(f"Successfully separated files: {success_files}, total time: {time() - start_time:.2f} seconds.")
-    
-#去除和声
-def vocal_separation_step2(input, output):
-    logger = get_logger(console_level=logging.INFO)
-    start_time = time()
-    separator = MSSeparator(
-        model_type='mel_band_roformer',
-        config_path='configs/config_mel_band_roformer_karaoke.yaml',
-        model_path='models/msst/model_mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt',
+        config_path=f'configs/config_bsrofoL.yaml',
+        model_path=f'models/msst/BS-Roformer_LargeV1.ckpt',
         device='auto',
         device_ids=[0],
         output_format='wav',
@@ -65,13 +45,33 @@ def vocal_separation_step2(input, output):
     logger.info(f"Successfully separated files: {success_files}, total time: {time() - start_time:.2f} seconds.")
     
 #去除混响
+def vocal_separation_step2(input, output):
+    logger = get_logger(console_level=logging.INFO)
+    start_time = time()
+    separator = MSSeparator(
+        model_type='mel_band_roformer',
+        config_path='configs/config_dereverb_echo_mbr_v2.yaml',
+        model_path='models/msst/dereverb_echo_mbr_v2_sdr_dry_13.4843.ckpt',
+        device='auto',
+        device_ids=[0],
+        output_format='wav',
+        use_tta=False,
+        store_dirs=output,
+        logger=logger,
+        debug=False
+    )
+    success_files = separator.process_audio(input)
+    separator.del_cache()
+    logger.info(f"Successfully separated files: {success_files}, total time: {time() - start_time:.2f} seconds.")
+    
+#去除和声
 def vocal_separation_step3(input, output):
     logger = get_logger(console_level=logging.INFO)
     start_time = time()
     separator = MSSeparator(
-        model_type='bs_roformer',
-        config_path='configs/deverb_bs_roformer_8_256dim_8depth.yaml',
-        model_path='models/msst/deverb_bs_roformer_8_256dim_8depth.ckpt',
+        model_type='mel_band_roformer',
+        config_path='configs/config_mel_band_roformer_karaoke.yaml',
+        model_path='models/msst/model_mel_band_roformer_karaoke_aufr33_viperx_sdr_10.1956.ckpt',
         device='auto',
         device_ids=[0],
         output_format='wav',
@@ -188,7 +188,7 @@ def wav2project(audio, tempo, enabled_steps, output, proj):
         move(f'results/step1/{base_name}_instrumental.wav', f'{output}/{base_name}_instrumental.wav')
         src = f'results/step1/{base_name}_vocals.wav'
         
-    if 'harmony_removal' in enabled_steps:
+    if 'deverb' in enabled_steps:
         Path('results/step2').mkdir(parents=True, exist_ok=True)
         vocal_separation_step2(src, 'results/step2')
         audios = glob(f'results/step2/*.wav')
@@ -197,13 +197,13 @@ def wav2project(audio, tempo, enabled_steps, output, proj):
                 Path(au).unlink()
             else:
                 src = au
-        
-    if 'deverb' in enabled_steps:
+                
+    if 'harmony_removal' in enabled_steps:
         Path('results/step3').mkdir(parents=True, exist_ok=True)
         vocal_separation_step3(src, 'results/step3')
         audios = glob(f'results/step3/*.wav')
         for au in audios:
-            if '_reverb.wav' in au:
+            if '_other.wav' in au:
                 Path(au).unlink()
             else:
                 src = au

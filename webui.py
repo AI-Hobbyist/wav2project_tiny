@@ -8,8 +8,8 @@ root_dir = Path(__file__).parent
 result = "./webui_output"
 choices = {
     '分离人声': 'vocal_separation',
-    '去除和声': 'harmony_removal',
     '去除混响': 'deverb',
+    '去除和声': 'harmony_removal',
     '去除噪声': 'denoise'
 }
 
@@ -41,7 +41,7 @@ def webui(share, server_name, server_port):
             with gr.Tab(label='推理设置'):
                 with gr.Row():
                     with gr.Column(scale=4):
-                        enabled_steps = gr.CheckboxGroup(label='启用步骤(默认全开，可根据实际情况决定开启哪些)', choices=list(choices.keys()), value=list(choices.keys()))
+                        enabled_steps = gr.CheckboxGroup(label='启用步骤(默认全开，可根据实际情况决定开启哪些)', choices=list(choices.keys()), value=["分离人声","去除混响"])
                     with gr.Column(scale=1):
                         proj = gr.Dropdown(label='输出格式', choices=['ustx', 'ust', 'vsqx', 'acep'], value='ustx')
                     with gr.Column(scale=1):
@@ -62,8 +62,8 @@ if __name__ == '__main__':
     warnings.filterwarnings("ignore")
 
     args = argparse.ArgumentParser(description='wav2ustx')
-    args.add_argument('--share', type=bool, default=False, help='是否分享')
-    args.add_argument('--server_name', type=str, default='127.0.0.1', help='绑定地址')
+    args.add_argument('--share', type=bool, default=True, help='是否分享')
+    args.add_argument('--server_name', type=str, default='0.0.0.0', help='绑定地址')
     args.add_argument('--server_port', type=int, default=7860, help='端口')
     args = args.parse_args()
     webui(args.share, args.server_name, args.server_port)
